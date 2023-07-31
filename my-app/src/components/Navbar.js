@@ -1,20 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-let name = "Tayyab";
+// let name = "Tayyab";
 
 export default function Navbar(props) {
-  function formatName(user) {
-    return user.firstName + " " + user.lastName;
-  }
+  // function formatName(user) {
+  //   return user.firstName + " " + user.lastName;
+  // }
 
-  const user = {
-    firstName: "Harper",
-    lastName: "Perez",
-  };
+  // const user = {
+  //   firstName: "Harper",
+  //   lastName: "Perez",
+  // };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg navbar-dark  bg-dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             {props.tilte}
@@ -50,7 +50,7 @@ export default function Navbar(props) {
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button className="btn btn-outline-success" type="submit">
+              <button className="btn btn-primary" type="submit">
                 Search
               </button>
             </form>
@@ -58,7 +58,7 @@ export default function Navbar(props) {
         </div>
       </nav>
 
-      <h1>Hello, {formatName(user)}!</h1>
+      {/* <h1>Hello, {formatName(user)}!</h1>
 
       <div className="blank">lovely</div>
 
@@ -76,7 +76,7 @@ export default function Navbar(props) {
           tempore optio iure? Eligendi veniam dignissimos amet. Maxime facilis
           ea maiores exercitationem doloribus.
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

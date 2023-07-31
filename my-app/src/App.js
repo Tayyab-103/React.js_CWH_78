@@ -12,7 +12,8 @@ function App() {
       
 
     {/* title and aboutText is a props  */}
-      <Navbar tilte = "TextUtils" aboutText = "About Us" />
+      {/* <Navbar tilte = "TextUtils" aboutText = "About Us" /> */}
+      <Navbar/>
       <div className="container my-3">
 
       <TextForm heading="Enter the Text to analyze below" />
