@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 // let name = "Tayyab";
 
@@ -7,17 +7,19 @@ export default function Navbar(props) {
   // function formatName(user) {
   //   return user.firstName + " " + user.lastName;
   // }
-
   // const user = {
   //   firstName: "Harper",
   //   lastName: "Perez",
   // };
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark  bg-dark">
+      <nav
+        className={`navbar navbar-expand-lg navbar-${props.mode}  bg-${props.mode} `}
+      >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
-            {props.tilte}
+            {props.title}
           </a>
           <button
             className="navbar-toggler"
@@ -43,7 +45,7 @@ export default function Navbar(props) {
                 </a>
               </li>
             </ul>
-            <form className="d-flex" role="search">
+            {/* <form className="d-flex" role="search">
               <input
                 className="form-control me-2"
                 type="search"
@@ -53,37 +55,40 @@ export default function Navbar(props) {
               <button className="btn btn-primary" type="submit">
                 Search
               </button>
-            </form>
+            </form> */}
+
+            <div
+              className={`form-check form-switch text-${
+                props.mode === "light" ? "dark" : "light"
+              }`}
+            >
+              <input
+                className="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                onClick={props.toggleMode}
+              />
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckDefault"
+              >
+                Enable Dark Mode
+              </label>
+            </div>
           </div>
         </div>
       </nav>
-
-      {/* <h1>Hello, {formatName(user)}!</h1>
-
-      <div className="blank">lovely</div>
-
-      <nav>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-      </nav>
-
-      <div className="container">
-        <div>
-          <h1> Hello {name}</h1>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati
-          consectetur eius reiciendis ducimus cumque ex quis voluptatibus
-          tempore optio iure? Eligendi veniam dignissimos amet. Maxime facilis
-          ea maiores exercitationem doloribus.
-        </div>
-      </div> */}
     </>
   );
 }
 
-Navbar.propTypes = { title: PropTypes.string.isRequired, aboutText: PropTypes.string.isRequired };
+// Navbar.propTypes = {
+//   title: PropTypes.string.isRequired,
+//   aboutText: PropTypes.string.isRequired,
+// };
 
-Navbar.defaultProps = {
-  title: "Set title here",
-  aboutText: "About text here"
-};
+// Navbar.defaultProps = {
+//   title: "Set title here",
+//   aboutText: "About text here",
+// };
