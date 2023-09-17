@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
+  //First Letter capitalize functions
+  const capitalize = (word) => {
+    const lower = word.toLowerCase();
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  };
+
   const handleUpClick = () => {
     // console.log("Uppercase was clicked" + text);
     let newText = text.toUpperCase();
     setText(newText);
+
+    props.showAlert("Converted to UpperCase!", "success")
   };
   const handleLoClick = () => {
     // console.log("Uppercase was clicked" + text);
     let newText = text.toLowerCase();
     setText(newText);
+     props.showAlert("Converted to LowerCase!", "success");
   };
   const handleClearClick = () => {
     let newText = "";
@@ -50,7 +59,7 @@ export default function TextForm(props) {
         <div className="mb-3">
           <textarea
             className="form-control"
-            value={text}
+            value={capitalize(text)}
             onChange={handleOnChange}
             id="myBox"
             rows="8"
@@ -100,7 +109,11 @@ export default function TextForm(props) {
           <b>{0.008 * text.split(" ").length} </b> Minutes Read
         </p>
         <h2>preview</h2>
-        <p>{text.lenght > 0 ? text : "Enter something to preview it here"}</p>
+        <p>
+          {capitalize(
+            text.length > 0 ? text : "Enter something to preview it here"
+          )}
+        </p>
       </div>
     </>
   );
