@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./App.css";
-// import About from "./components/About";
+import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import Alert from "./components/Alert";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light"); // whether dark mode or not
@@ -46,21 +47,31 @@ function App() {
     <>
       {/* title and aboutText is a props  */}
       {/* <Navbar tilte = "TextUtils" aboutText = "About Us" /> */}
-      <Navbar
-        title="TextUtils"
-        aboutText="About Us"
-        mode={mode}
-        toggleMode={toggleMode}
-      />
-      <Alert alert={alert} />
-      <div className="container my-3">
-        <TextForm
-          showAlert={showAlert}
-          heading="Enter the Text to analyze below"
+
+      <Router>
+        <Navbar
+          title="TextUtils"
+          aboutText="About Us"
           mode={mode}
+          toggleMode={toggleMode}
         />
-        {/* <About/> */}
-      </div>
+        <Alert alert={alert} />
+        <div className="container my-3">
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/"
+              element={
+                <TextForm
+                  showAlert={showAlert}
+                  heading="Enter the Text to analyze below"
+                  mode={mode}
+                />
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
