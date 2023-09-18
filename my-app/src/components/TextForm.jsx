@@ -15,9 +15,10 @@ export default function TextForm(props) {
     props.showAlert("Converted to UpperCase!", "success");
   };
   const handleLoClick = () => {
-    // console.log("Uppercase was clicked" + text);
+    // console.log("Lowercase was clicked" + text);
     let newText = text.toLowerCase();
     setText(newText);
+
     props.showAlert("Converted to LowerCase!", "success");
   };
   const handleClearClick = () => {
@@ -62,11 +63,12 @@ export default function TextForm(props) {
         <div className="mb-3">
           <textarea
             className="form-control"
-            value={capitalize(text)}
+            value={text}
             onChange={handleOnChange}
             id="myBox"
             rows="8"
             style={{
+              textTransform: "capitalize",
               backgroundColor: props.mode === "dark" ? "#042743" : "white",
               color: props.mode === "dark" ? "white" : "#042743",
             }}
