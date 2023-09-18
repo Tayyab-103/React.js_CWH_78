@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
@@ -28,7 +27,7 @@ function App() {
       showAlert("Dark mode has been enabled", "success");
 
       // Favicon Title Changed
-      document.title = "TextUtils - Dark Mode";
+      // document.title = "TextUtils - Dark Mode";
 
       // setTimeout(() => {
       //   document.title = "TextUtils is Amazing Mode";
@@ -58,13 +57,13 @@ function App() {
         <Alert alert={alert} />
         <div className="container my-3">
           <Routes>
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<About mode={mode} />} />
             <Route
               path="/"
               element={
                 <TextForm
                   showAlert={showAlert}
-                  heading="Enter the Text to analyze below"
+                  heading="Try TextUtils - Word Counter, Character Counter, Remove extra Spaces"
                   mode={mode}
                 />
               }
