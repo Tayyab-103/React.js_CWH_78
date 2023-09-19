@@ -3,10 +3,11 @@ import React, { useState } from "react";
 export default function TextForm(props) {
   //First Letter capitalize functions
   const capitalize = (word) => {
-    const lower = word.toLowerCase();
-    return lower.charAt(0).toUpperCase() + lower.slice(1);
+    // const lower = word.toLowerCase(); 
+    return word.charAt(0).toUpperCase() + word.slice(1);
   };
-
+  
+  const [text, setText] = useState("");
   const handleUpClick = () => {
     // console.log("Uppercase was clicked" + text);
     let newText = text.toUpperCase();
@@ -32,9 +33,14 @@ export default function TextForm(props) {
 
   const handleOnChange = (event) => {
     // console.log("On Chnage");
-    setText(event.target.value);
+    // setText(event.target.value);
+     const newText = event.target.value;
+     const capitalizedText = newText
+       .split(". ")
+       .map((sentence) => capitalize(sentence))
+       .join(". ");
+     setText(capitalizedText);
   };
-  const [text, setText] = useState("");
   // text = "new tex"; // wrong way to change the state
   // setText("new Text"); // correct way to change the state
 
@@ -68,7 +74,6 @@ export default function TextForm(props) {
             id="myBox"
             rows="8"
             style={{
-              textTransform: "capitalize",
               backgroundColor: props.mode === "dark" ? "#042743" : "white",
               color: props.mode === "dark" ? "white" : "#042743",
             }}
