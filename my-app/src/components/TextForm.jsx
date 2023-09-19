@@ -45,11 +45,13 @@ export default function TextForm(props) {
   // setText("new Text"); // correct way to change the state
 
   const handleCopy = () => {
-    let text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    // when navigator so below commented are not used
+    // {// let text = document.getElementById("myBox");
+    // // document.getSelection().removeAllRanges();}
+
+    // text.select();
+    navigator.clipboard.writeText(text);
     // removed selected copy text
-    document.getSelection().removeAllRanges();
     props.showAlert("Copied to Clipboard!", "success");
   };
 
@@ -136,7 +138,8 @@ export default function TextForm(props) {
           <b>
             {" "}
             {
-              text.split(" ").filter((element) => {
+              //  / \s+ / this means count extra spaces and + means more then one
+              text.split(/\s+/).filter((element) => {
                 return element.length !== 0;
               }).length
             }
