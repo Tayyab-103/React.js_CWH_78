@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { Schema } = mongoose;
 const NotesSchema = new Schema({
   tilte: {
     type: String,
@@ -18,5 +18,4 @@ const NotesSchema = new Schema({
     default: Date.now,
   },
 });
-
 module.exports = mongoose.model("notes", NotesSchema);
