@@ -21,5 +21,6 @@ const UserSchema = new Schema({
 });
 //User Duplication removed in DataBase
 const User = mongoose.model("user", UserSchema);
-User.createIndexes();
+//in mongodb index file create  so thats why not use
+// User.createIndexes();
 module.exports = User;
