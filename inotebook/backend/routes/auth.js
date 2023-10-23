@@ -4,11 +4,12 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const fetchuser = require ("../middleware/fetchuser")
 
 //JWT signature work ya kisi ko dikhani nahi hy save rakhni hy privacy
 const JWT_SECRET = "TayyabisaGoodb$oy";
 
-//create a user using : POST "/api/auth/createuser". No Login required
+//ROUTE:1 create a user using : POST "/api/auth/createuser". No Login required
 // express validator npm use in [conditions]
 router.post(
   "/createuser",
@@ -72,7 +73,7 @@ router.post(
   }
 );
 
-//Authenticate a user using : POST "/api/auth/login". No Login required
+//ROUTE:2 Authenticate a user using : POST "/api/auth/login". No Login required
 
 router.post(
   "/login",
@@ -118,4 +119,17 @@ router.post(
   }
 );
 
+//ROUTE:2 Get logging User Details using : POST "/api/auth/getuser" Login required
+
+router.post("/getuser", fetchuser, async (req, res) => {
+
+  try {
+    userId = req.user.id;
+    const user = await User.findById(userId).select("-password");
+    res.send(user)
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error ");
+  }
+});
 module.exports = router;
