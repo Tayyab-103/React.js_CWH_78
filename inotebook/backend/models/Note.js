@@ -1,7 +1,14 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const NotesSchema = new Schema({
-  tilte: {
+  //User link with Notes // ya notes kis user ky hy
+  //
+  user: {
+    //Using  foreign key Pattern 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
+  title: {
     type: String,
     required: true,
   },

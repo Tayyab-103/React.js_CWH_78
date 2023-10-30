@@ -6,7 +6,7 @@
 
  const connectToMongo = ()=>{
     mongoose.connect(mongoURI,()=>{
-        console.log("connected to Mongo Successfully");
+        console.log("connected to MongoDB Successfully");
     })
  }
 
