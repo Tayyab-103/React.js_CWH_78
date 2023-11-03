@@ -4,7 +4,7 @@ const fetchuser = require("../middleware/fetchuser");
 const Note = require("../models/Note");
 const { body, validationResult } = require("express-validator");
 
-//ROUTE:1 Get All the Notes using : GET "/api/auth/fecthallnotes" Login required
+//ROUTE:1 Get All the Notes using : GET "/api/notes/fecthallnotes" Login required
 router.get("/fecthallnotes", fetchuser, async (req, res) => {
   try {
     const notes = await Note.find({ user: req.user.id });
@@ -15,7 +15,7 @@ router.get("/fecthallnotes", fetchuser, async (req, res) => {
     res.status(500).send("Internal Server Error ");
   }
 });
-//ROUTE:2 Add a new Notes using : POST "/api/auth/addnote" Login required
+//ROUTE:2 Add a new Notes using : POST "/api/notes/addnote" Login required
 router.post(
   "/addnote",
   fetchuser,
@@ -48,5 +48,40 @@ router.post(
     }
   }
 );
+//ROUTE:3 Updating an Existing Notes using : POST "/api/notes/updatenote" Login required
+//user update own notes not the others notes validation later
+router.put("/updatenote/:id", fetchuser, async (req, res) => {
+  const { title, description, tag } = req.body;
+  // Create a newNote object
+  const newNote = {};
+  //If "title a raha hy" is part of the requirement, then add the object above it.
+  // If it's not coming, the user doesn't want to update.
+  if (title) {
+    newNote.title = title;
+  }
+  if (description) {
+    newNote.description = description;
+  }
+  if (tag) {
+    newNote.tag = tag;
+  }
+
+  // Find the note to be Update and Delete it
+  let note = await Note.findById(req.params.id);
+  if (!note) {
+    return res.status(404).send("Not Found");
+  }
+  if (note.user.toString() !== req.user.id) {
+    return res.status(401).send("Not Allowed");
+  }
+
+   note = await Note.findByIdAndUpdate(
+    req.params.id,
+    { $set: newNote },
+    { new: true }
+  ); //mera note update ho jaye ga ya karny sy {new:true}
+
+  res.json({ note });
+});
 
 module.exports = router;
