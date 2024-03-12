@@ -23,7 +23,6 @@ const Notes = () => {
     etag: "",
   });
   const updateNote = (currentNote) => {
-    
     setIsModalOpen(true);
     setNote({
       id: currentNote._id,
@@ -35,8 +34,8 @@ const Notes = () => {
 
   const handleClick = (e) => {
     console.log("Updating the new Note", note);
-    editNote(note.id, note.etitle, note.edescription, note.etag)
-    setIsModalOpen(false)
+    editNote(note.id, note.etitle, note.edescription, note.etag);
+    setIsModalOpen(false);
     e.preventDefault();
   };
 
@@ -101,6 +100,8 @@ const Notes = () => {
                       name="etitle"
                       aria-describedby="emailHelp"
                       onChange={onChange}
+                      minLength={5}
+                      required
                     />
                   </div>
                   <div className="mb-3">
@@ -114,6 +115,8 @@ const Notes = () => {
                       id="edescription"
                       name="edescription"
                       onChange={onChange}
+                      minLength={5}
+                      required
                     />
                   </div>
                   <div className="mb-3">
@@ -142,6 +145,9 @@ const Notes = () => {
                   Close
                 </button>
                 <button
+                  disabled={
+                    note.etitle.length < 5 || note.edescription.length < 5
+                  }
                   type="button"
                   className="btn btn-primary"
                   onClick={handleClick}
@@ -154,8 +160,12 @@ const Notes = () => {
         </div>
       )}
 
-      <div className="row my-3">
+      <div className="container row my-3">
         <h2>Your Notes</h2>
+
+        <div className="container">
+          {notes.length === 0 && "No Notes to Display"}
+        </div>
         {notes.map((note) => {
           return (
             <Noteitem key={note._id} updateNote={updateNote} note={note} />
