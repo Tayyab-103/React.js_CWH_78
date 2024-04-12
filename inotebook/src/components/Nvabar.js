@@ -9,7 +9,7 @@ const Nvabar = () => {
   // }, [location]);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
       <Link className="navbar-brand" to="/">
         iNotebook
       </Link>
@@ -45,18 +45,20 @@ const Nvabar = () => {
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
-          <input
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
+        <Link
+            className="btn btn-primary mx-1"
+            to="/login"
+            role="button"
           >
-            Search
-          </button>
+            Login
+          </Link>
+          <Link
+            className="btn btn-primary mx-1"
+            to="/signup"
+            role="button"
+          >
+            SignUp
+          </Link>
         </form>
       </div>
     </nav>
