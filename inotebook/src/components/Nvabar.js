@@ -59,13 +59,6 @@ const Nvabar = () => {
           >
             SignUp
           </Link>
-          <Link
-            className="btn btn-primary mx-1"
-            to="/signup"
-            role="button"
-          >
-            Undo 
-          </Link>
         </form>
       </div>
     </nav>

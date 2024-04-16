@@ -15,7 +15,7 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyYzJkOTViNmVmMjNjM2RhZjdlZGYyIn0sImlhdCI6MTY5NzgwNTE0OH0.t84zG3dTndGTW2_PVbwgCfTyG-Lz98CPNFqQdpI4nXA",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyYzJkOTViNmVmMjNjM2RhZjdlZGYyIn0sImlhdCI6MTcxMzI5NTI1Nn0.SpAsSToBBvgz7_upBdyPvyrcIsYURfVXbv2-Ut4LfJc",
       },
     });
     const json = await response.json(); //response.json async function hy
@@ -31,7 +31,7 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyYzJkOTViNmVmMjNjM2RhZjdlZGYyIn0sImlhdCI6MTY5NzgwNTE0OH0.t84zG3dTndGTW2_PVbwgCfTyG-Lz98CPNFqQdpI4nXA",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyYzJkOTViNmVmMjNjM2RhZjdlZGYyIn0sImlhdCI6MTcxMzI5NTI1Nn0.SpAsSToBBvgz7_upBdyPvyrcIsYURfVXbv2-Ut4LfJc",
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -39,17 +39,6 @@ const NoteState = (props) => {
     setNotes(notes.concat(note));
     // console.log(json);
 
-    // console.log("Adding a New Notes");
-    // const note = {
-    //   _id: "6551f8881a5694b8653a8f08",
-    //   user: "652c2d95b6ef23c3daf7edf2",
-    //   title,
-    //   description,
-    //   tag,
-    //   date: "2023-11-13T10:20:56.485Z",
-    //   __v: 0,
-    // };
-    // setNotes(notes.concat(note));
   };
 
   //Delete a Note
@@ -60,7 +49,7 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyYzJkOTViNmVmMjNjM2RhZjdlZGYyIn0sImlhdCI6MTY5NzgwNTE0OH0.t84zG3dTndGTW2_PVbwgCfTyG-Lz98CPNFqQdpI4nXA",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyYzJkOTViNmVmMjNjM2RhZjdlZGYyIn0sImlhdCI6MTcxMzI5NTI1Nn0.SpAsSToBBvgz7_upBdyPvyrcIsYURfVXbv2-Ut4LfJc",
       },
     });
 
@@ -82,7 +71,7 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyYzJkOTViNmVmMjNjM2RhZjdlZGYyIn0sImlhdCI6MTY5NzgwNTE0OH0.t84zG3dTndGTW2_PVbwgCfTyG-Lz98CPNFqQdpI4nXA",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyYzJkOTViNmVmMjNjM2RhZjdlZGYyIn0sImlhdCI6MTcxMzI5NTI1Nn0.SpAsSToBBvgz7_upBdyPvyrcIsYURfVXbv2-Ut4LfJc",
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -103,47 +92,7 @@ const NoteState = (props) => {
     }
     setNotes(newNotes);
   };
-  // const editNote = async (id, title, description, tag) => {
-  //   try {
-  //     // API Call
-  //     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         "auth-token":
-  //           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUyYzJkOTViNmVmMjNjM2RhZjdlZGYyIn0sImlhdCI6MTY5NzgwNTE0OH0.t84zG3dTndGTW2_PVbwgCfTyG-Lz98CPNFqQdpI4nXA",
-  //       },
-  //       body: JSON.stringify({ title, description, tag }),
-  //     });
-
-  //     // Check if response is OK
-  //     if (!response.ok) {
-  //       throw new Error("Network response was not ok");
-  //     }
-
-  //     const json = await response.json();
-  //     console.log(json);
-
-  //     // Assuming notes and setNotes are defined somewhere
-  //     let newNotes = JSON.parse(JSON.stringify(notes));
-
-  //     // Logic to edit in client
-  //     for (let index = 0; index < newNotes.length; index++) {
-  //       const element = newNotes[index];
-  //       if (element._id === id) {
-  //         newNotes[index].title = title;
-  //         newNotes[index].description = description;
-  //         newNotes[index].tag = tag;
-  //         break;
-  //       }
-  //     }
-
-  //     // Update state with edited notes
-  //     setNotes(newNotes);
-  //   } catch (error) {
-  //     console.error("Error editing note:", error.message);
-  //   }
-  // };
+  
 
   return (
     <NoteContext.Provider
