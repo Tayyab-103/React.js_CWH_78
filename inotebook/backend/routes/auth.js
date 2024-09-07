@@ -21,6 +21,7 @@ router.post(
     }),
   ],
   async (req, res) => {
+    let success = false;
     // request ki body main kuch bi bejha gaya hy woh main nikal saqta hu
     // console.log(req.body);
 
@@ -29,7 +30,7 @@ router.post(
     // if there are errors, return bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
 
     // express validator
@@ -39,7 +40,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ error: "sorry a user with this emailalready exists" });
+          .json({success, error: "sorry a user with this emailalready exists" });
       }
       // await is wajha sy kiya kiyu ky bcrypt promise return karta hy
       const salt = await bcrypt.genSalt(10);
@@ -65,7 +66,8 @@ router.post(
 
       // res.json({authToken: authToken});
       // use ES6 same work
-      res.json({ authToken });
+      success = true;
+      res.json({success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error ");
