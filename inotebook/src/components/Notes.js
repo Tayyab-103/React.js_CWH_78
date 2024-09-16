@@ -2,13 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
 import AddNote from "./AddNote";
+import { useNavigate } from "react-router-dom";
 
 const Notes = (props) => {
   const context = useContext(noteContext);
+  const navigate = useNavigate();
 
   const { notes, getNotes, editNote } = context;
   useEffect(() => {
-    getNotes();
+    if (localStorage.getItem("token")) {
+      getNotes();
+    } else {
+      props.showAlert("Please Login", "danger");
+      navigate("/login");
+    }
     // eslint-disable-next-line
   }, []);
 
@@ -37,7 +44,7 @@ const Notes = (props) => {
     editNote(note.id, note.etitle, note.edescription, note.etag);
     setIsModalOpen(false);
     e.preventDefault();
-    props.showAlert("Updated Successfully", "success")
+    props.showAlert("Updated Successfully", "success");
   };
 
   const onChange = (e) => {
@@ -165,13 +172,27 @@ const Notes = (props) => {
         <h2>Your Notes</h2>
 
         <div className="container">
-          {notes.length === 0 && "No Notes to Display"}
+          {/* {notes.length === 0 && "No Notes to Display"}
         </div>
         {notes.map((note) => {
           return (
             <Noteitem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />
           );
-        })}
+        })} */}
+
+          {Array.isArray(notes) && notes.length === 0 && "No Notes to Display"}
+        </div>
+        {Array.isArray(notes) &&
+          notes.map((note) => {
+            return (
+              <Noteitem
+                key={note._id}
+                updateNote={updateNote}
+                showAlert={props.showAlert}
+                note={note}
+              />
+            );
+          })}
       </div>
     </>
   );

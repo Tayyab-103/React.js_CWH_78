@@ -1,9 +1,16 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Nvabar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
-//No Need 
+
+  const handleLogout = () =>{
+    localStorage.removeItem('token');
+    navigate("/login");
+  }
+
+  //No Need
   // useEffect(() => {
   //   console.log(location.pathname);
   // }, [location]);
@@ -25,8 +32,11 @@ const Nvabar = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
+      <div
+        className="collapse navbar-collapse  justify-content-between"
+        id="navbarSupportedContent"
+      >
+        <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
           <li
             className={`nav-item ${location.pathname === "/" ? "active" : ""}`}
           >
@@ -44,22 +54,20 @@ const Nvabar = () => {
             </Link>
           </li>
         </ul>
-        <form className="form-inline my-2 my-lg-0">
-        <Link
-            className="btn btn-primary mx-1"
-            to="/login"
-            role="button"
-          >
-            Login
-          </Link>
-          <Link
-            className="btn btn-primary mx-1"
-            to="/signup"
-            role="button"
-          >
-            SignUp
-          </Link>
-        </form>
+        {/* <form className="form-inline my-2 my-lg-0"> */}
+
+        {!localStorage.getItem("token") ? (
+          <form className="d-flex">
+            <Link className="btn btn-primary mx-1" to="/login" role="button">
+              Login
+            </Link>
+            <Link className="btn btn-primary mx-1" to="/signup" role="button">
+              SignUp
+            </Link>
+          </form>
+        ) : (
+          <button onClick={handleLogout} className="btn btn-primary"> Logout</button>
+        )}
       </div>
     </nav>
   );
