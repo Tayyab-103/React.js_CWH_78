@@ -41,3 +41,39 @@ const Shop = () => {
 };
 
 export default Shop;
+
+// class Shape {
+//   calculatedArea() {
+//     return 0;
+//   }
+// }
+
+// class Rectangle extends Shape {
+//   constructor(width, height) {
+//     super();
+//     this.width = width;
+//     this.height = height;
+//   }
+
+//   calculatedArea() {
+//     return this.width * this.height;
+//   }
+// }
+
+// class Circle extends Shape {
+//   constructor(radius) {
+//     super();
+//     this.radius = radius;
+//   }
+
+//   calculatedArea() {
+//     return Math.PI * this.radius * this.radius;
+//   }
+// }
+
+
+// const shapes = [new Rectangle(10, 5), new Circle(7)];
+
+// shapes.forEach(shape =>{
+//   console.log(`Area: ${shape.calculateArea()}`);
+// })
