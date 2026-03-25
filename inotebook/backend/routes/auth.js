@@ -4,10 +4,10 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const fetchuser = require ("../middleware/fetchuser")
+const fetchuser = require("../middleware/fetchuser");
 
 //JWT signature work ya kisi ko dikhani nahi hy save rakhni hy privacy
-const JWT_SECRET = "TayyabisaGoodb$oy";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 //ROUTE:1 create a user using : POST "/api/auth/createuser". No Login required
 // express validator npm use in [conditions]
@@ -30,7 +30,7 @@ router.post(
     // if there are errors, return bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({success, errors: errors.array() });
+      return res.status(400).json({ success, errors: errors.array() });
     }
 
     // express validator
@@ -40,7 +40,10 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({success, error: "sorry a user with this emailalready exists" });
+          .json({
+            success,
+            error: "sorry a user with this emailalready exists",
+          });
       }
       // await is wajha sy kiya kiyu ky bcrypt promise return karta hy
       const salt = await bcrypt.genSalt(10);
@@ -67,12 +70,12 @@ router.post(
       // res.json({authToken: authToken});
       // use ES6 same work
       success = true;
-      res.json({success, authToken });
+      res.json({ success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error ");
     }
-  }
+  },
 );
 
 //ROUTE:2 Authenticate a user using : POST "/api/auth/login". No Login required
@@ -105,7 +108,10 @@ router.post(
         success = false;
         return res
           .status(400)
-          .json({success, error: "Please try to login with correct credentials" });
+          .json({
+            success,
+            error: "Please try to login with correct credentials",
+          });
       }
 
       const data = {
@@ -115,23 +121,22 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-        success = true;
-      res.json({success, authToken });
+      success = true;
+      res.json({ success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error ");
     }
-  }
+  },
 );
 
 //ROUTE:3 Get logging User Details using : POST "/api/auth/getuser" Login required
 
 router.post("/getuser", fetchuser, async (req, res) => {
-
   try {
     const userId = req.user.id;
     const user = await User.findById(userId).select("-password");
-    res.send(user)
+    res.send(user);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error ");

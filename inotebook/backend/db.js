@@ -1,13 +1,12 @@
- const mongoose = require('mongoose');
- const mongoURI =
-   "mongodb+srv://tayyabhameed103:tayyabhameed103@cwh-45.diw2r3p.mongodb.net/inotebook?retryWrites=true&w=majority";
+const mongoose = require("mongoose");
+const mongoURI = process.env.MONGO_URI;
 
- mongoose.set("strictQuery", false);
+mongoose.set("strictQuery", false);
 
- const connectToMongo = ()=>{
-    mongoose.connect(mongoURI,()=>{
-        console.log("connected to MongoDB Successfully");
-    })
- }
+const connectToMongo = () => {
+  mongoose.connect(mongoURI, () => {
+    console.log("connected to MongoDB Successfully");
+  });
+};
 
- module.exports = connectToMongo;
+module.exports = connectToMongo;
